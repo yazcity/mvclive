@@ -1,0 +1,52 @@
+﻿@model IEnumerable<Employee.Models.TBL_EMPLOYEE>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.EMPLOYEENAME)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PLACE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CREATEDDATE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UPDATEDDATE)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.EMPLOYEENAME)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PLACE)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CREATEDDATE)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UPDATEDDATE)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.EMPLOYEEID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.EMPLOYEEID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.EMPLOYEEID })
+        </td>
+    </tr>
+}
+
+</table>

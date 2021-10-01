@@ -1,0 +1,51 @@
+﻿@model Employee.Models.TBL_EMPLOYEE
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>TBL_EMPLOYEE</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.EMPLOYEENAME)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EMPLOYEENAME)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PLACE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PLACE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CREATEDDATE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CREATEDDATE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UPDATEDDATE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UPDATEDDATE)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.EMPLOYEEID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

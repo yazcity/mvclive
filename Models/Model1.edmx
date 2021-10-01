@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Models.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="TBL_EMPLOYEE">
+          <Key>
+            <PropertyRef Name="EMPLOYEEID" />
+          </Key>
+          <Property Name="EMPLOYEEID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EMPLOYEENAME" Type="nvarchar(max)" />
+          <Property Name="PLACE" Type="varchar" MaxLength="50" />
+          <Property Name="CREATEDDATE" Type="datetime" />
+          <Property Name="UPDATEDDATE" Type="datetime" />
+        </EntityType>
+        <Function Name="SP_EMPLOYEE_CU" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EMPLOYEEID" Type="bigint" Mode="In" />
+          <Parameter Name="EMPLOYEENAME" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="PLACE" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SP_EMPLOYEE_DELETE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EMPLOYEEID" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="SP_EMPLOYEE_SELECT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="ModelsStoreContainer">
+          <EntitySet Name="TBL_EMPLOYEE" EntityType="Self.TBL_EMPLOYEE" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Models" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="TBL_EMPLOYEE">
+          <Key>
+            <PropertyRef Name="EMPLOYEEID" />
+          </Key>
+          <Property Name="EMPLOYEEID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EMPLOYEENAME" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PLACE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CREATEDDATE" Type="DateTime" Precision="3" />
+          <Property Name="UPDATEDDATE" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityContainer Name="yazcity_EmployeeEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="TBL_EMPLOYEE" EntityType="Self.TBL_EMPLOYEE" />
+          <FunctionImport Name="SP_EMPLOYEE_CU">
+            <Parameter Name="EMPLOYEEID" Mode="In" Type="Int64" />
+            <Parameter Name="EMPLOYEENAME" Mode="In" Type="String" />
+            <Parameter Name="PLACE" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_EMPLOYEE_DELETE">
+            <Parameter Name="EMPLOYEEID" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="SP_EMPLOYEE_SELECT" ReturnType="Collection(Models.SP_EMPLOYEE_SELECT_Result)" />
+        </EntityContainer>
+        <ComplexType Name="SP_EMPLOYEE_SELECT_Result">
+          <Property Type="Int64" Name="EMPLOYEEID" Nullable="false" />
+          <Property Type="String" Name="EMPLOYEENAME" Nullable="true" />
+          <Property Type="String" Name="PLACE" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="CREATEDDATE" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="UPDATEDDATE" Nullable="true" Precision="23" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ModelsStoreContainer" CdmEntityContainer="yazcity_EmployeeEntities">
+          <EntitySetMapping Name="TBL_EMPLOYEE">
+            <EntityTypeMapping TypeName="Models.TBL_EMPLOYEE">
+              <MappingFragment StoreEntitySet="TBL_EMPLOYEE">
+                <ScalarProperty Name="EMPLOYEEID" ColumnName="EMPLOYEEID" />
+                <ScalarProperty Name="EMPLOYEENAME" ColumnName="EMPLOYEENAME" />
+                <ScalarProperty Name="PLACE" ColumnName="PLACE" />
+                <ScalarProperty Name="CREATEDDATE" ColumnName="CREATEDDATE" />
+                <ScalarProperty Name="UPDATEDDATE" ColumnName="UPDATEDDATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SP_EMPLOYEE_CU" FunctionName="Models.Store.SP_EMPLOYEE_CU" />
+          <FunctionImportMapping FunctionImportName="SP_EMPLOYEE_DELETE" FunctionName="Models.Store.SP_EMPLOYEE_DELETE" />
+          <FunctionImportMapping FunctionImportName="SP_EMPLOYEE_SELECT" FunctionName="Models.Store.SP_EMPLOYEE_SELECT">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Models.SP_EMPLOYEE_SELECT_Result">
+                <ScalarProperty Name="EMPLOYEEID" ColumnName="EMPLOYEEID" />
+                <ScalarProperty Name="EMPLOYEENAME" ColumnName="EMPLOYEENAME" />
+                <ScalarProperty Name="PLACE" ColumnName="PLACE" />
+                <ScalarProperty Name="CREATEDDATE" ColumnName="CREATEDDATE" />
+                <ScalarProperty Name="UPDATEDDATE" ColumnName="UPDATEDDATE" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

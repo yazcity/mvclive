@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Models" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="TBL_EMPLOYEE">
+    <Key>
+      <PropertyRef Name="EMPLOYEEID" />
+    </Key>
+    <Property Name="EMPLOYEEID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EMPLOYEENAME" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PLACE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CREATEDDATE" Type="DateTime" Precision="3" />
+    <Property Name="UPDATEDDATE" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityContainer Name="yazcity_EmployeeEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="TBL_EMPLOYEE" EntityType="Self.TBL_EMPLOYEE" />
+    <FunctionImport Name="SP_EMPLOYEE_CU">
+      <Parameter Name="EMPLOYEEID" Mode="In" Type="Int64" />
+      <Parameter Name="EMPLOYEENAME" Mode="In" Type="String" />
+      <Parameter Name="PLACE" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_EMPLOYEE_DELETE">
+      <Parameter Name="EMPLOYEEID" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="SP_EMPLOYEE_SELECT" ReturnType="Collection(Models.SP_EMPLOYEE_SELECT_Result)" />
+  </EntityContainer>
+  <ComplexType Name="SP_EMPLOYEE_SELECT_Result">
+    <Property Type="Int64" Name="EMPLOYEEID" Nullable="false" />
+    <Property Type="String" Name="EMPLOYEENAME" Nullable="true" />
+    <Property Type="String" Name="PLACE" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="CREATEDDATE" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="UPDATEDDATE" Nullable="true" Precision="23" />
+  </ComplexType>
+</Schema>

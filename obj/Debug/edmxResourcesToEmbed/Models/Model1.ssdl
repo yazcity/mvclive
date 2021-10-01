@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Models.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="TBL_EMPLOYEE">
+    <Key>
+      <PropertyRef Name="EMPLOYEEID" />
+    </Key>
+    <Property Name="EMPLOYEEID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EMPLOYEENAME" Type="nvarchar(max)" />
+    <Property Name="PLACE" Type="varchar" MaxLength="50" />
+    <Property Name="CREATEDDATE" Type="datetime" />
+    <Property Name="UPDATEDDATE" Type="datetime" />
+  </EntityType>
+  <Function Name="SP_EMPLOYEE_CU" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="EMPLOYEEID" Type="bigint" Mode="In" />
+    <Parameter Name="EMPLOYEENAME" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="PLACE" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="SP_EMPLOYEE_DELETE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="EMPLOYEEID" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="SP_EMPLOYEE_SELECT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <EntityContainer Name="ModelsStoreContainer">
+    <EntitySet Name="TBL_EMPLOYEE" EntityType="Self.TBL_EMPLOYEE" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>
